@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sammy 的龍蝦養成日記</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/monokai.css">
+  <style>
+    :root {
+      --bg-color: #faf8f5;
+      --accent-color: #ca8a04;
+      --text-color: #292524;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; font-family: 'Noto Sans TC', sans-serif; background-color: var(--bg-color); color: var(--text-color); }
+    .reveal { font-family: 'Noto Sans TC', sans-serif; background-color: var(--bg-color); }
+    .reveal .slides { text-align: center; }
+    .reveal .slides section {
+      background-color: var(--bg-color);
+      padding: 60px 60px 20px 60px;
+      height: 100%;
+      display: flex !important;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding-bottom: 5vh;
+    }
+    .reveal h1 { font-size: 60px; font-weight: 900; color: var(--text-color); margin-bottom: 24px; line-height: 1.3; }
+    .reveal h2 { font-size: 50px; font-weight: 700; color: var(--text-color); margin-bottom: 36px; line-height: 1.4; }
+    .reveal h2 .highlight { color: var(--accent-color); font-weight: 900; }
+    .reveal h1 .accent, .reveal li .accent, .reveal .big-statement .accent { color: var(--accent-color); font-weight: 700; }
+    .reveal ul { list-style: none; padding: 0; margin: 0; max-width: 900px; }
+    .reveal li { font-size: 28px; font-weight: 500; margin-bottom: 20px; line-height: 1.6; text-align: left; padding-left: 30px; position: relative; }
+    .reveal li::before { content: "▸"; color: var(--accent-color); font-weight: 700; position: absolute; left: 0; }
+    .reveal .subtitle { font-size: 28px; font-weight: 500; color: #6b6866; margin-bottom: 16px; }
+    .reveal .speaker { font-size: 26px; font-weight: 500; color: #6b6866; margin-top: 30px; }
+    .reveal .date { font-size: 24px; font-weight: 400; color: #9a9896; margin-top: 12px; }
+    .reveal .contact { font-size: 28px; font-weight: 500; margin-bottom: 20px; }
+    .reveal .contact a { color: var(--accent-color); text-decoration: none; font-weight: 700; }
+    .reveal .slides section.cover { justify-content: center; }
+    .reveal .slides section.cover h1 { font-size: 64px; margin-bottom: 24px; }
+    .reveal .big-statement { font-size: 48px; font-weight: 900; line-height: 1.4; color: var(--text-color); }
+    .reveal .progress { background: rgba(202, 138, 4, 0.2); }
+    .reveal .progress span { background: var(--accent-color); }
+    .reveal .controls { color: var(--accent-color); }
+    .reveal aside.notes { display: none; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ==================== Slide 1: 封面 ==================== -->
+      <section class="cover" data-transition="zoom" data-auto-animate>
+        <p class="subtitle">Generative AI 年會 小聚</p>
+        <h1>Sammy 的<span class="accent">龍蝦</span>養成日記</h1>
+        <p style="font-size: 22px; color: #6b6866; max-width: 600px; margin: 0 auto;">
+          一個忙碌上班族，如何用碎片時間養出 AI Agent
+        </p>
+        <p class="speaker">林毅民 Sammy Lin / Delta Sr. Principal Architect</p>
+        <p class="date">2026.03.11</p>
+        <aside class="notes">
+          大家好，我是 Sammy，今天要分享我養龍蝦的故事。
+          這裡說的龍蝦不是真的龍蝦，是 AI Agent。
+          為什麼叫龍蝦？因為 OpenClaw 的 logo 就是一隻龍蝦。
+          【目標時間：30秒】
+        </aside>
+      </section>
+
+      <!-- ==================== Slide 2: 我是誰 ==================== -->
+      <section data-transition="slide" data-auto-animate>
+        <h2>我是誰</h2>
+        <div style="max-width: 650px; margin: 20px auto; text-align: left;">
+          <div style="font-size: 20px; line-height: 1.8; color: #292524;">
+            <p style="margin-bottom: 16px;">白天：<strong>Delta</strong> 架構師，寫程式、做架構</p>
+            <p style="margin-bottom: 16px;">晚上：<strong>兩個小孩的爸</strong>，陪玩、陪讀、陪睡</p>
+            <p style="color: #ca8a04; font-weight: 700;">剩下的時間，只有通勤那 2 小時（塞死人的內湖）</p>
+          </div>
+          <div style="margin-top: 24px; padding: 16px; background: #fffbeb; border-radius: 8px; border-left: 4px solid #ca8a04;">
+            <div style="font-size: 18px; font-weight: 700; color: #292524; margin-bottom: 8px;">以前我想做 side project</div>
+            <div style="font-size: 16px; color: #6b7280;">就得拿著電腦開發</div>
+          </div>
+        </div>
+        <aside class="notes">
+          我是 Sammy，白天是架構師，晚上是兩個小孩的爸。
+          剩下的時間只有通勤那一個小時。
+          以前想做 side project，但 AI 開發要坐在電腦前，
+          通勤只能滑手機，什麼都做不了。
+          【目標時間：60秒】
+        </aside>
+      </section>
+
+      <!-- ==================== Slide 3: 三個坑 ==================== -->
+      <section data-transition="concave" data-auto-animate>
+        <h2 style="font-size: 42px;">但養龍蝦，<span class="highlight">三個坑</span></h2>
+        <div style="text-align: left; max-width: 700px; margin: 24px auto;">
+          <div class="fragment fade-up" style="margin-bottom: 18px; padding: 16px 20px; background: #fff; border-left: 4px solid #ca8a04; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+            <div style="font-size: 22px; font-weight: 700; color: #ca8a04;">1. 教不會</div>
+            <div style="font-size: 16px; color: #6b7280; margin-top: 4px;">每次都要從頭教，學過的事下一隻不知道</div>
+          </div>
+          <div class="fragment fade-up" style="margin-bottom: 18px; padding: 16px 20px; background: #fff; border-left: 4px solid #ca8a04; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+            <div style="font-size: 22px; font-weight: 700; color: #ca8a04;">2. 會忘記</div>
+            <div style="font-size: 16px; color: #6b7280; margin-top: 4px;">講過的事，過幾分鐘就忘了</div>
+          </div>
+          <div class="fragment fade-up" style="padding: 16px 20px; background: #fff; border-left: 4px solid #ca8a04; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+            <div style="font-size: 22px; font-weight: 700; color: #ca8a04;">3. 花太多</div>
+            <div style="font-size: 16px; color: #6b7280; margin-top: 4px;">選錯模型計價方式，帳單嚇死人</div>
+          </div>
+        </div>
+        <p class="fragment fade-up" style="font-size: 20px; color: #292524; font-weight: 700; margin-top: 16px;">但我一個一個解過來了</p>
+        <aside class="notes">
+          養了兩個月，我踩了三個坑。
+          第一：教不會。每次都要從頭教。
+          第二：會忘記。前一秒說的，下一秒就忘。
+          第三：花太多。帳單來的那天，心臟都要停了。
+          但我都一個一個解過來了。
+          【目標時間：60秒】
+        </aside>
+      </section>
+
+      <!-- ==================== Slide 4: 轉折 ==================== -->
+      <section data-transition="convex" data-auto-animate>
+        <h2 style="font-size: 42px;">開始<span class="highlight">調教</span>龍蝦</h2>
+        <div style="display: flex; gap: 12px; justify-content: center; margin: 16px auto; max-width: 800px;">
+          <div class="fragment fade-right" style="flex: 1; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.12);">
+            <img src="https://cdn.3mi.tw/slides/telegram-chat-1.jpg" style="width: 100%; display: block;"/>
+          </div>
+          <div class="fragment fade-right" style="flex: 1; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.12);">
+            <img src="https://cdn.3mi.tw/slides/telegram-chat-2.jpg" style="width: 100%; display: block;"/>
+          </div>
+          <div class="fragment fade-right" style="flex: 1; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.12);">
+            <img src="https://cdn.3mi.tw/slides/telegram-chat-3.jpg" style="width: 100%; display: block;"/>
+          </div>
+        </div>
+        <p class="fragment fade-up" style="font-size: 20px; color: #ca8a04; font-weight: 700; margin-top: 12px;">
+          Telegram + 語音 = 通勤時間的超能力
+        </p>
+        <aside class="notes">
+          然後我遇到了 OpenClaw。
+          重點是：它接 Telegram。我在通勤的時候，用語音就能指揮 Agent。
+          語音比打字快三倍，這是 Stanford 的研究。
+          只有在捷運上或辦公室不方便說話的時候才打字。
+          【目標時間：60秒】
+        </aside>
+      </section>
+
+      <!-- ==================== Slide 5: Onboarding ==================== -->
+      <section data-transition="convex" data-auto-animate>
+        <h2>OpenClaw <span class="highlight">不是裝了就會動</span></h2>
+        <div style="display: flex; align-items: flex-start; justify-content: center; gap: 40px; margin-top: 20px;">
+          <svg viewBox="0 0 260 200" style="width: 230px; flex-shrink: 0;">
+            <rect x="0" y="0" width="260" height="200" rx="10" fill="#f5f3ef"/>
+            <text x="20" y="28" font-size="14" font-weight="700" fill="#292524" font-family="monospace">workspace/</text>
+            <line x1="28" y1="36" x2="28" y2="170" stroke="#d1d5db" stroke-width="1"/>
+            <line x1="28" y1="50" x2="34" y2="50" stroke="#d1d5db" stroke-width="1"/>
+            <text x="36" y="56" font-size="13" fill="#ca8a04" font-family="monospace">SOUL.md</text>
+            <text x="140" y="56" font-size="11" fill="#9a9896">我是誰</text>
+            <line x1="28" y1="76" x2="34" y2="76" stroke="#d1d5db" stroke-width="1"/>
+            <text x="36" y="82" font-size="13" fill="#ca8a04" font-family="monospace">USER.md</text>
+            <text x="140" y="82" font-size="11" fill="#9a9896">主人是誰</text>
+            <line x1="28" y1="102" x2="34" y2="102" stroke="#d1d5db" stroke-width="1"/>
+            <text x="36" y="108" font-size="13" fill="#ca8a04" font-family="monospace">AGENTS.md</text>
+            <text x="155" y="108" font-size="11" fill="#9a9896">工作規則</text>
+            <line x1="28" y1="128" x2="34" y2="128" stroke="#d1d5db" stroke-width="1"/>
+            <text x="36" y="134" font-size="13" fill="#ca8a04" font-family="monospace">MEMORY.md</text>
+            <text x="155" y="134" font-size="11" fill="#9a9896">長期記憶</text>
+            <line x1="28" y1="154" x2="34" y2="154" stroke="#d1d5db" stroke-width="1"/>
+            <text x="36" y="160" font-size="13" fill="#ca8a04" font-family="monospace">memory/</text>
+            <text x="140" y="160" font-size="11" fill="#9a9896">每日日記</text>
+          </svg>
+          <div style="text-align: left; max-width: 400px;">
+            <div style="margin-bottom: 14px; padding: 12px 14px; background: #fff; border-left: 3px solid #ca8a04; border-radius: 4px;">
+              <div style="font-weight: 700; color: #ca8a04; margin-bottom: 3px; font-size: 15px;">用 Markdown 定義一切</div>
+              <div style="color: #6b7280; font-size: 14px;">個性、背景、規則、記憶</div>
+            </div>
+            <div class="fragment fade-up" style="padding: 12px 14px; background: #fffbeb; border-left: 3px solid #ca8a04; border-radius: 4px;">
+              <div style="font-weight: 700; color: #292524; margin-bottom: 3px; font-size: 15px;">像養小孩一樣</div>
+              <div style="color: #6b7280; font-size: 13px;">
+                幫牠申請 Gmail、GitHub、Cloudflare<br>
+                <span style="color: #ca8a04; font-weight: 600;">給身分、給工具、給權限</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">
+          Agent 不是裝了就會動。你要告訴它：你是誰、我是誰、怎麼做事。
+          SOUL.md 定義個性，USER.md 定義我的背景，AGENTS.md 定義工作規則。
+          我還幫牠申請了 Gmail、GitHub、Cloudflare，綁信用卡。
+          就像養小孩 — 給身分、給工具、給權限、給錢。
+          【目標時間：60秒】
+        </aside>
+      </section>
+
+      <!-- ==================== Slide 6: 多 Agent 艦隊 ==================== -->
+      <section data-transition="slide" data-auto-animate>
+        <h2 style="font-size: 42px;">不只一隻，<span class="highlight">養一群</span></h2>
+        <div style="display: flex; gap: 20px; max-width: 850px; margin: 16px auto; align-items: center;">
+          <!-- 左：Agent 用 2x3 grid -->
+          <div style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div class="fragment fade-up" style="background: #fff; padding: 12px 14px; border-radius: 6px; border-left: 4px solid #ca8a04; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+              <div style="font-size: 15px; font-weight: 700; color: #ca8a04;">Mochi 🌟</div>
+              <div style="font-size: 12px; color: #6b7280;">個人助理</div>
+              <div style="font-size: 10px; color: #ca8a04; margin-top: 4px; font-weight: 600;">聊天・提醒・記事</div>
+            </div>
+            <div class="fragment fade-up" style="background: #fff; padding: 12px 14px; border-radius: 6px; border-left: 4px solid #b45309; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+              <div style="font-size: 15px; font-weight: 700; color: #b45309;">投資 Agent</div>
+              <div style="font-size: 12px; color: #6b7280;">股票 / 加密貨幣</div>
+              <div style="font-size: 10px; color: #6b7280; margin-top: 4px;">寫文章・分析</div>
+            </div>
+            <div class="fragment fade-up" style="background: #fff; padding: 12px 14px; border-radius: 6px; border-left: 4px solid #92400e; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+              <div style="font-size: 15px; font-weight: 700; color: #92400e;">公司 Agent</div>
+              <div style="font-size: 12px; color: #6b7280;">工作用</div>
+              <div style="font-size: 10px; color: #6b7280; margin-top: 4px;">工作・專案執行</div>
+            </div>
+            <div class="fragment fade-up" style="background: #fff; padding: 12px 14px; border-radius: 6px; border-left: 4px solid #78350f; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+              <div style="font-size: 15px; font-weight: 700; color: #78350f;">Code Agent</div>
+              <div style="font-size: 12px; color: #6b7280;">開發 / 寫程式</div>
+              <div style="font-size: 10px; color: #6b7280; margin-top: 4px;">寫程式・Debug</div>
+            </div>
+            <div class="fragment fade-up" style="background: #fff; padding: 12px 14px; border-radius: 6px; border-left: 4px solid #d97706; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+              <div style="font-size: 15px; font-weight: 700; color: #d97706;">小編</div>
+              <div style="font-size: 12px; color: #6b7280;">文案管理</div>
+              <div style="font-size: 10px; color: #6b7280; margin-top: 4px;">寫文案・發文</div>
+            </div>
+            <div class="fragment fade-up" style="background: #fff; padding: 12px 14px; border-radius: 6px; border-left: 4px solid #059669; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+              <div style="font-size: 15px; font-weight: 700; color: #059669;">家庭助理</div>
+              <div style="font-size: 12px; color: #6b7280;">行事曆、待辦</div>
+              <div style="font-size: 10px; color: #6b7280; margin-top: 4px;">家庭・日程管理</div>
+            </div>
+          </div>
+          <!-- 右：好處 -->
+          <div style="flex: 1; text-align: left;">
+            <div class="fragment fade-up" style="margin-bottom: 16px;">
+              <div style="font-size: 18px; font-weight: 700; color: #292524;">記憶不錯亂</div>
+              <div style="font-size: 14px; color: #6b7280;">公司的事不會混到個人對話</div>
+            </div>
+            <div class="fragment fade-up" style="margin-bottom: 16px;">
+              <div style="font-size: 18px; font-weight: 700; color: #292524;">共用 Skill Pool</div>
+              <div style="font-size: 14px; color: #6b7280;">搜尋、部署、轉錄 — 大家共享</div>
+            </div>
+            <div class="fragment fade-up" style="background: #fffbeb; padding: 12px 14px; border-radius: 6px;">
+              <div style="font-size: 16px; font-weight: 700; color: #ca8a04;">解決「教不會」</div>
+              <div style="font-size: 13px; color: #6b7280;">通用能力共享，專業知識隔離</div>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">
+          痛點一是教不會。解法是：養一群，但共享技能。
+          四隻 Agent 各司其職，上下文不會錯亂。
+          通用 Skill 共享一個 Pool，新 Agent 只要教專業知識。
+          【目標時間：60秒】
+        </aside>
+      </section>
+
+      <!-- ==================== Slide 7: 成長系統 ==================== -->
+      <section data-transition="slide" data-auto-animate>
+        <h2 style="font-size: 42px;">成長系統：<span class="highlight">不會忘、不用催</span></h2>
+        <div style="display: flex; gap: 20px; max-width: 850px; margin: 16px auto; align-items: stretch;">
+          <!-- 左：Heartbeat -->
+          <div class="fragment fade-up" style="flex: 1; background: #292524; border-radius: 10px; padding: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.12); text-align: left;">
+            <div style="font-size: 14px; font-weight: 700; color: #ca8a04; margin-bottom: 8px; font-family: monospace;">HEARTBEAT.md</div>
+            <div style="font-size: 13px; color: #a8a29e; line-height: 1.9; font-family: monospace;">
+              <span style="color: #6ee7b7;">每小時自動醒來</span><br>
+              - 檢查信件，有急件通知我<br>
+              - 看行事曆，開會前提醒<br>
+              - 追蹤市場，大波動就說<br>
+              <span style="color: #ca8a04;"># 我不用問，它會主動來找我</span>
+            </div>
+          </div>
+          <!-- 中：記憶 -->
+          <div class="fragment fade-up" style="flex: 1; background: #292524; border-radius: 10px; padding: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.12); text-align: left;">
+            <div style="font-size: 14px; font-weight: 700; color: #ca8a04; margin-bottom: 8px; font-family: monospace;">MEMORY.md</div>
+            <div style="font-size: 13px; color: #a8a29e; line-height: 1.9; font-family: monospace;">
+              <span style="color: #6ee7b7;">每次醒來先讀這個檔案</span><br>
+              - 長期記憶寫在 MEMORY.md<br>
+              - 每日日記寫在 memory/<br>
+              - 同步到 Obsidian<br>
+              <span style="color: #ca8a04;"># 不靠向量 DB，Markdown 就夠</span>
+            </div>
+          </div>
+          <!-- 右：PDCA -->
+          <div class="fragment fade-up" style="flex: 1; background: #292524; border-radius: 10px; padding: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.12); text-align: left;">
+            <div style="font-size: 14px; font-weight: 700; color: #ca8a04; margin-bottom: 8px; font-family: monospace;">AGENTS.md</div>
+            <div style="font-size: 13px; color: #a8a29e; line-height: 1.9; font-family: monospace;">
+              <span style="color: #6ee7b7;">做任何事之前，先建 Linear 卡</span><br>
+              - 開始做 → 改 In Progress<br>
+              - 做完 → 記錄成果，改 Done<br>
+              - 定期回顧，自己反思改進<br>
+              <span style="color: #ca8a04;"># 不靠記憶，靠制度</span>
+            </div>
+          </div>
+        </div>
+        <p class="fragment fade-up" style="font-size: 20px; color: #ca8a04; font-weight: 700; margin-top: 12px;">
+          解決「會忘記」：給它心跳、給它記憶、給它流程
+        </p>
+        <aside class="notes">
+          痛點二是會忘記。解法是成長系統，三個機制。
+          Heartbeat：每小時自動醒來巡檢，有事通知我，我不用催。
+          記憶：MEMORY.md 長期記憶加每日日記，同步到 Obsidian，不需要向量資料庫。
+          PDCA：做任何事之前先建 Linear 卡，不靠記憶靠流程。
+          我念了它三次才學會。
+          【目標時間：75秒】
+        </aside>
+      </section>
+
+      <!-- ==================== Slide 8: 監控 + 模型混搭 ==================== -->
+      <section data-transition="slide" data-auto-animate>
+        <h2 style="font-size: 42px;">龍蝦養肥了，要做<span class="highlight">健康檢查</span></h2>
+        <div style="display: flex; gap: 14px; justify-content: center; margin: 16px auto; max-width: 850px;">
+          <div class="fragment fade-up" style="flex: 1; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.12);">
+            <img src="https://cdn.3mi.tw/slides/grafana-overview.jpg" style="width: 100%; display: block;"/>
+          </div>
+          <div class="fragment fade-up" style="flex: 1; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.12);">
+            <img src="https://cdn.3mi.tw/slides/grafana-detail.jpg" style="width: 100%; display: block;"/>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: center; gap: 16px; margin-top: 14px; flex-wrap: wrap;">
+          <div class="fragment fade-up" style="font-size: 14px; color: #6b7280; background: #fff; padding: 8px 14px; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+            <span style="color: #ca8a04; font-weight: 700;">監控</span> Grafana + Prometheus Exporter
+          </div>
+          <div class="fragment fade-up" style="font-size: 14px; color: #6b7280; background: #fff; padding: 8px 14px; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+            <span style="color: #ca8a04; font-weight: 700;">日常</span> MiniMax M2.5 — $10/月
+          </div>
+          <div class="fragment fade-up" style="font-size: 14px; color: #6b7280; background: #fff; padding: 8px 14px; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+            <span style="color: #ca8a04; font-weight: 700;">關鍵</span> Claude Max 訂閱制 — $100/月
+          </div>
+        </div>
+        <p class="fragment fade-up" style="font-size: 18px; color: #ca8a04; font-weight: 700; margin-top: 10px;">
+          解決「花太多」：監控 + 模型混搭
+        </p>
+        <p style="font-size: 14px; margin-top: 6px;"><a href="https://github.com/SammyLin/openclaw-exporter" style="color: #ca8a04;">github.com/SammyLin/openclaw-exporter</a></p>
+        <aside class="notes">
+          痛點三是花太多。解法是監控加模型混搭。
+          我是 DevOps 出身，自己寫了 Prometheus Exporter 接 Grafana。
+          日常對話用 MiniMax 便宜模型，一個月 10 美金。
+          關鍵任務用 Claude Max 訂閱制 — $100/月。
+          千萬不要全部用最貴的 API 按 token 算，會被嚇死。
+          【目標時間：60秒】
+        </aside>
+      </section>
+
+      <!-- ==================== Slide 9: 現在的樣子 ==================== -->
+      <section data-transition="convex" data-auto-animate>
+        <h2 style="font-size: 42px;">養了兩個月，<span class="highlight">現在長這樣</span></h2>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 850px; margin: 20px auto;">
+          <div class="fragment fade-up" style="background: #fff; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden;">
+            <img src="https://cdn.3mi.tw/slides/bg-removal.jpg" style="width: 100%; height: 140px; object-fit: cover; object-position: top;"/>
+            <div style="padding: 10px 12px;">
+              <div style="font-size: 14px; color: #ca8a04; font-weight: 700;">AI 去背工具</div>
+              <div style="font-size: 12px; color: #6b7280;">bg-removal.3mi.tw</div>
+            </div>
+          </div>
+          <div class="fragment fade-up" style="background: #fff; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden;">
+            <img src="https://cdn.3mi.tw/slides/retrolyze.jpg" style="width: 100%; height: 140px; object-fit: cover; object-position: top;"/>
+            <div style="padding: 10px 12px;">
+              <div style="font-size: 14px; color: #ca8a04; font-weight: 700;">台股回測平台</div>
+              <div style="font-size: 12px; color: #6b7280;">retrolyze.3mi.tw</div>
+            </div>
+          </div>
+          <div class="fragment fade-up" style="background: #fff; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden;">
+            <img src="https://cdn.3mi.tw/slides/mbti.jpg" style="width: 100%; height: 140px; object-fit: cover; object-position: top;"/>
+            <div style="padding: 10px 12px;">
+              <div style="font-size: 14px; color: #ca8a04; font-weight: 700;">MBTI 過年測驗</div>
+              <div style="font-size: 12px; color: #6b7280;">mbti.3mi.tw</div>
+            </div>
+          </div>
+        </div>
+        <p style="font-size: 18px; color: #6b7280; margin-top: 16px;">全部在<span style="color: #ca8a04; font-weight: 700;">通勤和零碎時間</span>用 Telegram 指揮完成</p>
+        <aside class="notes">
+          兩個月下來，我們做了這些東西。
+          AI 去背、台股回測、MBTI 測驗，還有這份簡報。
+          重點是：全部都是在通勤時間用手機指揮完成的。
+          【目標時間：60秒】
+        </aside>
+      </section>
+
+      <!-- ==================== Slide 10: 值得嗎 + Q&A ==================== -->
+      <section data-transition="zoom" data-auto-animate>
+        <h2><span class="highlight">Take Away</span></h2>
+        <ul>
+          <li class="fragment fade-up">AI Agent 不是玩具，是<span class="accent">第二個大腦</span></li>
+          <li class="fragment fade-up">Onboarding 越紮實，回報<span class="accent">越高</span></li>
+          <li class="fragment fade-up">通勤時間也能<span class="accent">做產品</span> — 技術門檻已消失</li>
+          <li class="fragment fade-up" style="font-size: 22px; margin-top: 14px; padding: 12px 20px; background: #fffbeb; border-radius: 8px;">
+            🎯 <span style="color: #ca8a04; font-weight: 700;">現在可以做什麼？</span><br>
+            <span style="font-size: 16px; color: #6b7280;">安裝 OpenClaw，用 Markdown 定義你的第一個 Agent</span>
+          </li>
+        </ul>
+        <div class="fragment fade-up" style="margin-top: 40px;">
+          <p class="contact">GitHub: <a href="https://github.com/SammyLin/">github.com/SammyLin</a></p>
+          <p class="contact">Facebook: <a href="https://www.facebook.com/corn2277">facebook.com/corn2277</a></p>
+        </div>
+        <aside class="notes">
+          值得嗎？它讓你變輕鬆，不是變厲害。
+          Onboarding 越認真，後面越省事。
+          技術門檻已消失，創意才是瓶頸。
+          最大的收穫是，我終於有時間做一些產品出來了。
+          而且都是用通勤時間完成的。
+          謝謝大家！有什麼問題歡迎提問。
+          【目標時間：90秒 含 Q&A】
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/zoom/zoom.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      transition: 'slide',
+      transitionSpeed: 'default',
+      backgroundTransition: 'fade',
+      center: true,
+      controls: true,
+      controlsTutorial: false,
+      progress: true,
+      slideNumber: 'c/t',
+      touch: true,
+      keyboard: true,
+      totalTime: 600,
+      autoAnimateEasing: 'ease-out',
+      autoAnimateDuration: 0.8,
+      plugins: [RevealNotes, RevealHighlight, RevealZoom],
+    });
+  </script>
+  <script>
+    // 圖片點擊放大
+    document.querySelectorAll('.slides img').forEach(img => {
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (this.classList.contains('zoomed')) {
+          this.classList.remove('zoomed');
+          this.style.cssText = 'width:100%;display:block;cursor:pointer;';
+        } else {
+          document.querySelectorAll('.slides img.zoomed').forEach(i => {
+            i.classList.remove('zoomed');
+            i.style.cssText = 'width:100%;display:block;cursor:pointer;';
+          });
+          this.classList.add('zoomed');
+          this.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;max-width:90vw;max-height:90vh;width:auto;box-shadow:0 0 100px rgba(0,0,0,0.8);cursor:pointer;';
+        }
+      });
+    });
+    document.addEventListener('click', function(e) {
+      if (!e.target.classList.contains('zoomed')) {
+        document.querySelectorAll('.slides img.zoomed').forEach(img => {
+          img.classList.remove('zoomed');
+          img.style.cssText = 'width:100%;display:block;cursor:pointer;';
+        });
+      }
+    });
+  </script>
+</body>
+</html>
