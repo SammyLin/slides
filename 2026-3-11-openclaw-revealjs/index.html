@@ -49,6 +49,10 @@
     .reveal .controls { color: var(--accent-color); }
     .reveal aside.notes { display: none; }
   </style>
+<style>
+.lightbox { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); cursor: pointer; }
+.lightbox img { max-width: 95%; max-height: 95%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+</style>
 </head>
 <body>
   <div class="reveal">
@@ -321,15 +325,39 @@
           </div>
           <!-- 下排：流程 -->
           <div class="fragment fade-up" style="background: #292524; border-radius: 10px; padding: 14px; text-align: left;">
-            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ca8a04" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 12h6"/><path d="M9 16h6"/></svg>
               <div style="font-size: 15px; font-weight: 700; color: #ca8a04;">流程</div>
               <div style="font-size: 11px; color: #ca8a04; font-family: monospace; background: #1c1917; padding: 2px 6px; border-radius: 3px; margin-left: auto;">AGENTS.md</div>
             </div>
-            <div style="display: flex; gap: 16px; font-family: monospace; font-size: 11px; color: #d6d3d1; background: #1c1917; padding: 8px 12px; border-radius: 6px; border-left: 3px solid #ca8a04;">
-              <div style="line-height: 1.7;">每次 session 必讀：<span style="color: #fbbf24;">SOUL → USER → 知識庫 → memory</span></div>
-              <div style="border-left: 1px solid #44403c; padding-left: 16px; line-height: 1.7;"><span style="color: #6ee7b7;">Linear-First</span>：建 issue → 記錄 → Done</div>
-              <div style="border-left: 1px solid #44403c; padding-left: 16px; line-height: 1.7;">安全：<span style="color: #f87171;">trash > rm</span>、對外先問</div>
+            <div style="display: flex; gap: 8px; justify-content: center; align-items: center;">
+              <div style="background: #fff; border-radius: 8px; padding: 12px 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+                <div style="width: 28px; height: 28px; background: #ca8a04; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 6px;">
+                  <span style="color: #fff; font-weight: 700; font-size: 14px;">1</span>
+                </div>
+                <div style="font-size: 13px; font-weight: 700; color: #000;">建 issue<div style="font-size: 10px; color: #374151; margin-top: 2px;">寫清楚要做什麼</div></div>
+              </div>
+              <div style="color: #f59e0b; font-size: 20px; font-weight: bold;">→</div>
+              <div style="background: #fff; border-radius: 8px; padding: 12px 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+                <div style="width: 28px; height: 28px; background: #ca8a04; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 6px;">
+                  <span style="color: #fff; font-weight: 700; font-size: 14px;">2</span>
+                </div>
+                <div style="font-size: 13px; font-weight: 700; color: #000;">記錄<div style="font-size: 10px; color: #374151; margin-top: 2px;">comment 記錄進度</div></div>
+              </div>
+              <div style="color: #f59e0b; font-size: 20px; font-weight: bold;">→</div>
+              <div style="background: #fff; border-radius: 8px; padding: 12px 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+                <div style="width: 28px; height: 28px; background: #ca8a04; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 6px;">
+                  <span style="color: #fff; font-weight: 700; font-size: 14px;">3</span>
+                </div>
+                <div style="font-size: 13px; font-weight: 700; color: #000;">執行<div style="font-size: 10px; color: #374151; margin-top: 2px;">spawn agent / 動手做</div></div>
+              </div>
+              <div style="color: #f59e0b; font-size: 20px; font-weight: bold;">→</div>
+              <div style="background: #fff; border-radius: 8px; padding: 12px 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+                <div style="width: 28px; height: 28px; background: #ca8a04; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 6px;">
+                  <span style="color: #fff; font-weight: 700; font-size: 14px;">4</span>
+                </div>
+                <div style="font-size: 13px; font-weight: 700; color: #000;">Done<div style="font-size: 10px; color: #374151; margin-top: 2px;">改成 Done + 記錄成果</div></div>
+              </div>
             </div>
           </div>
         </div>
@@ -353,7 +381,7 @@
         <h2 style="font-size: 42px;">龍蝦養肥了，要做<span class="highlight">健康檢查</span></h2>
         <div style="display: flex; justify-content: center; gap: 16px; margin: 16px auto; flex-wrap: wrap;">
           <div class="fragment fade-up" style="font-size: 14px; color: #6b7280; background: #fff; padding: 8px 14px; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
-            <span style="color: #ca8a04; font-weight: 700;">監控</span> Grafana + Prometheus Exporter
+            <span style="color: #ca8a04; font-weight: 700;">監控</span> <span style="color: #ffffff; font-weight: 700;">Grafana + Prometheus Exporter</span>
           </div>
         </div>
         <p class="fragment fade-up" style="font-size: 14px; margin-bottom: 12px;"><a href="https://github.com/SammyLin/openclaw-exporter" style="color: #ca8a04;">github.com/SammyLin/openclaw-exporter</a></p>
@@ -693,5 +721,9 @@
       }
     });
   </script>
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'"><img id="lightbox-img" src=""></div>
+<script>
+function showLightbox(src) { document.getElementById("lightbox-img").src = src; document.getElementById("lightbox").style.display = "block"; }
+</script>
 </body>
 </html>
